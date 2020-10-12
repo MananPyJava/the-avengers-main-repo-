@@ -52,7 +52,7 @@ def Chem():
 def about():
     pass
 
-if _name_ == '_main_':
+if __name__ == '__main__':
     root = Tk()
     root.title("Student Assistant")
     root.geometry("{0}x{1}+0+0".format(root.winfo_screenwidth(), root.winfo_screenheight()))
