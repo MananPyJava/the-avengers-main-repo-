@@ -54,7 +54,7 @@ def Physics():
         pass
 def Chem():
     global a, b, l1, entry1, l2
-    a=0
+    a=1 #change to 1 when making label
     data=pd.read_csv('chem_data.csv')
     
 
