@@ -17,6 +17,7 @@ Write the following commands in your Command line:
 ```
 git clone https://github.com/MananPyJava/the-avengers
 cd the-avengers
+pip install -r requirements.txt
 python all_funcs.py
 ```
 The following steps will open up the GUI.
