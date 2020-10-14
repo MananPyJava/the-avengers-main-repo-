@@ -4,6 +4,7 @@ import pandas as pd
 import cv2
 import os
 import threading
+from win32com.client import Dispatch
 
 
 a=0
@@ -15,6 +16,11 @@ b=''
 l2=''
 searched=''
 ended=False
+
+engine=Dispatch('SAPI.SpVoice')
+
+def speak(text):
+    engine.speak(text)
 
 def wikisearch():
     global a,entry1, l1, b
@@ -90,6 +96,7 @@ def main():
 def sleep_check():
     global ended
     video = cv2.VideoCapture(0)
+    file='alarm.mp3'
     face_cascade = cv2.CascadeClassifier('face.xml')
     eye_cascade=cv2.CascadeClassifier('eye.xml')
     while True:
@@ -104,11 +111,11 @@ def sleep_check():
                     if eyes.any():
                         print("hi")
                 except:
-                    print('do not sleep')
+                    speak("don't sleep, wake up")
         except:
             print("bye")    
         if ended:
-            break
+            exit()
 
 if __name__=="__main__":
     sleep_thread=threading.Thread(target=sleep_check)
