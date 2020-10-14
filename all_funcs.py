@@ -97,6 +97,7 @@ def sleep_check():
     global ended
     video = cv2.VideoCapture(0)
     file='alarm.mp3'
+    sleep=0
     face_cascade = cv2.CascadeClassifier('face.xml')
     eye_cascade=cv2.CascadeClassifier('eye.xml')
     while True:
@@ -109,11 +110,15 @@ def sleep_check():
             if faces.any():
                 try:    
                     if eyes.any():
-                        print("hi")
+                        sleep=0
+                    pass
                 except:
-                    speak("don't sleep, wake up")
+                    sleep+=1
         except:
-            print("bye")    
+            sleep=0
+        if sleep==5:
+            sleep=0
+            speak("dont sleep, wake up")
         if ended:
             exit()
 
