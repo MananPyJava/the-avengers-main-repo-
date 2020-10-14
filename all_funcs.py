@@ -14,6 +14,7 @@ l1=''
 b=''
 l2=''
 searched=''
+ended=False
 
 def wikisearch():
     global a,entry1, l1, b
@@ -63,7 +64,7 @@ def Chem():
     
 
 def main():
-    global a, l1, entry1, b, root
+    global a, l1, entry1, b, root, ended
     a=0
     root = Tk()
     root.title("Student Assistant")
@@ -84,21 +85,29 @@ def main():
     setup=Menu(MenuBar,tearoff=0)
     root.config(menu=MenuBar)
     root.mainloop()
+    ended=True
 
 def sleep_check():
+    global ended
     video = cv2.VideoCapture(0)
     face_cascade = cv2.CascadeClassifier('face.xml')
+    eye_cascade=cv2.CascadeClassifier('eye.xml')
     while True:
         check, frame = video.read()
         grey_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
         faces = face_cascade.detectMultiScale(grey_frame, scaleFactor=1.1, minNeighbors=5, minSize=(50, 50))
+        eyes=eye_cascade.detectMultiScale(grey_frame, scaleFactor=1.1, minNeighbors=5, minSize=(50, 50))
         key = cv2.waitKey(1)
         try:
             if faces.any():
-                print("hi")
+                try:    
+                    if eyes.any():
+                        print("hi")
+                except:
+                    print('do not sleep')
         except:
             print("bye")    
-        if cv2.waitKey(1) & 0xFF == ord('q'):
+        if ended:
             break
 
 if __name__=="__main__":
