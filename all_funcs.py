@@ -65,9 +65,17 @@ def Physics():
         pass
 def Chem():
     global a, b, l1, entry1, l2
-    a=1 #change to 1 when making label  
+    a=0 #change to 1 when making label  
     data=pd.read_csv('elements.csv')
+    l1['text']="chemistry"
+    entry1.destroy()
+    b.destroy()
     
+def maths():
+    global root, entry1, b, l1
+    l1['text']="enter the sum here: "
+    
+
 
 def main():
     global a, l1, entry1, b, root, ended
@@ -76,7 +84,6 @@ def main():
     root.title("Student Assistant")
     root.geometry("{0}x{1}+0+0".format(root.winfo_screenwidth(), root.winfo_screenheight()))
     root.configure()
-    #photo=PhotoImage(file='photo.png')
     l1=Label(root)
     l1.place(x=root.winfo_screenwidth()/5, y=0)
     MenuBar = Menu(root)
@@ -84,6 +91,7 @@ def main():
     FileMenu.add_command(label="Search Wikipedia", command=wikisearch)
     FileMenu.add_command(label="Physics", command = Physics)
     FileMenu.add_command(label = "Chemistry", command = Chem)
+    FileMenu.add_command(label = "Maths", command = maths)
     MenuBar.add_cascade(label = "Subjects", menu=FileMenu)
     HelpMenu = Menu(MenuBar, tearoff=0)
     HelpMenu.add_command(label = "About Our Teacher-'Tech With Tim'", command=lambda: print())
@@ -116,7 +124,7 @@ def sleep_check():
                     sleep+=1
         except:
             sleep=0
-        if sleep==5:
+        if sleep==25:
             sleep=0
             speak("dont sleep, wake up")
         if ended:
