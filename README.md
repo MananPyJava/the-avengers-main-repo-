@@ -8,6 +8,7 @@ The theme for the Timathon is Students. So, this project is made to help student
 - Wikipedia Search
 - Search basic properties of elements
 - Most commonly used formulae for Physics
+- Sleep detector which checks whether a student is sleeping while studying
 
 We have made this project with the aim that during the Covid-19 times, online studies of students shall not be hampered. Their doubts shall be solved. We have made this project by taking in mind, the problems students face while studying.
 
