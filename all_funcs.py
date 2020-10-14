@@ -1,6 +1,10 @@
 from tkinter import *
 import wikipedia
 import pandas as pd
+import cv2
+import os
+import threading
+
 
 a=0
 d=0
@@ -81,5 +85,24 @@ def main():
     root.config(menu=MenuBar)
     root.mainloop()
 
+def sleep_check():
+    video = cv2.VideoCapture(0)
+    face_cascade = cv2.CascadeClassifier('face.xml')
+    while True:
+        check, frame = video.read()
+        grey_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+        faces = face_cascade.detectMultiScale(grey_frame, scaleFactor=1.1, minNeighbors=5, minSize=(50, 50))
+        key = cv2.waitKey(1)
+        try:
+            if faces.any():
+                print("hi")
+        except:
+            print("bye")    
+        if cv2.waitKey(1) & 0xFF == ord('q'):
+            break
+
 if __name__=="__main__":
-    main()
+    sleep_thread=threading.Thread(target=sleep_check)
+    main_thread=threading.Thread(target=main)
+    sleep_thread.start()
+    main_thread.start()
