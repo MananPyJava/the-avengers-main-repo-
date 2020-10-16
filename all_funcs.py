@@ -38,18 +38,19 @@ def wikisearch():
         try:
             if b.winfo_exists()==0:
                 b=Button(root,text="Search!")
+                b.bind("<Button-1>", search)
                 b.pack(anchor='center')    
         except:
             b=Button(root,text="Search!")
+            b.bind("<Button-1>", search)
             b.pack(anchor='center')
 
-def search():
+def search(hi):
     global entry1, l2, b, searched, root
     query=entry1.get()
-    results = wikipedia.summary(query+' according to', sentences=2)
-    l2=Label(root, wraplength=600)
+    results = wikipedia.summary(query+' according to', sentences=4)
     l2['text']=results
-    l2.place(x=root.winfo_screenwidth()/2, y=75, anchor='center')
+    l2.place(x=root.winfo_screenwidth()/2, y=80, anchor='center')
     root.update()
 
 def Physics():
@@ -124,7 +125,7 @@ def maths():
 
 
 def main():
-    global a, l1, entry1, b, root, ended
+    global a, l1, entry1, b, root, ended, l2
     a=0
     root = Tk()
     root.title("Student Assistant")
@@ -143,6 +144,7 @@ def main():
     HelpMenu.add_command(label = "About Our Teacher-'Tech With Tim'", command=lambda: print())
     MenuBar.add_cascade(label="Our Inspiration", menu=HelpMenu)
     setup=Menu(MenuBar,tearoff=0)
+    l2=Label(root, wraplength=600)
     root.config(menu=MenuBar)
     root.mainloop()
     ended=True
@@ -170,7 +172,7 @@ def sleep_check():
                     sleep+=1
         except:
             sleep=0
-        if sleep==25:
+        if sleep==35:
             sleep=0
             speak("dont sleep, wake up")
         if ended:
