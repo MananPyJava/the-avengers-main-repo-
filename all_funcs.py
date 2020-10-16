@@ -27,10 +27,21 @@ def wikisearch():
     a+=1
     if a==1:
         l1['text']="Enter Term You Want To Search and press button below: "
-        entry1 = Entry(root,width=20)
-        entry1.pack(anchor='center')
-        b=Button(text='Search', command=search)
-        b.pack(anchor='center')
+        l1.place(x=root.winfo_screenwidth()/5, y=0)
+        try:
+            if entry1.winfo_exists()==0:
+                entry1=Entry(root,width=20)
+                entry1.pack(anchor='center')    
+        except:
+            entry1=Entry(root,width=20)
+            entry1.pack(anchor='center')
+        try:
+            if b.winfo_exists()==0:
+                b=Button(root,text="Search!")
+                b.pack(anchor='center')    
+        except:
+            b=Button(root,text="Search!")
+            b.pack(anchor='center')
 
 def search():
     global entry1, l2, b, searched, root
@@ -39,6 +50,7 @@ def search():
     l2=Label(root, wraplength=600)
     l2['text']=results
     l2.place(x=root.winfo_screenwidth()/2, y=75, anchor='center')
+    root.update()
 
 def Physics():
     global a, l1, b
@@ -55,6 +67,7 @@ def Physics():
                   9)Voltage(in volts)=Electric current flowing through the conductor in amperes x The resistance of the material in ohms
                   10)Frequency of a wave=Velocity or wave speed x The wavelength of the wave
                """
+    l1.pack(anchor='center')
     try:
         entry1.destroy()
     except:
@@ -63,18 +76,51 @@ def Physics():
         b.destroy()
     except:
         pass
+    try:
+        l2.destroy()
+    except:
+        pass
 def Chem():
     global a, b, l1, entry1, l2
     a=0 #change to 1 when making label  
     data=pd.read_csv('elements.csv')
     l1['text']="chemistry"
-    entry1.destroy()
-    b.destroy()
+    l1.pack(anchor='center')
+    try:
+        entry1.destroy()
+    except:
+        pass
+    try:
+        b.destroy()
+    except:
+        pass
+    try:
+        l2.destroy()
+    except:
+        pass
     
 def maths():
     global root, entry1, b, l1
     l1['text']="enter the sum here: "
-    
+    l1.place(x=root.winfo_screenwidth()/3, y=0)
+    try:
+        if entry1.winfo_exists()==0:
+            entry1=Entry(root,width=20)
+            entry1.pack(anchor='center')    
+    except:
+        entry1=Entry(root,width=20)
+        entry1.pack(anchor='center')
+    try:
+        if b.winfo_exists()==0:
+            b=Button(root,text="Solve!")
+            b.pack(anchor='center')    
+    except:
+        b=Button(root,text="Solve!")
+        b.pack(anchor='center')
+    try:
+        l2.destroy()
+    except:
+        pass
 
 
 def main():
