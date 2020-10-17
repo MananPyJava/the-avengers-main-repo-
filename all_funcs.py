@@ -86,7 +86,7 @@ def Chem():
     a=0 #change to 1 when making label  
     data=pd.read_csv('elements.csv')
     l1['text']="chemistry"
-    l1.pack(anchor='center')
+    l1.place(x=root.winfo_screenwidth()/5, y=0)
     try:
         entry1.destroy()
     except:
@@ -132,7 +132,6 @@ def main():
     root.geometry("{0}x{1}+0+0".format(root.winfo_screenwidth(), root.winfo_screenheight()))
     root.configure()
     l1=Label(root)
-    l1.place(x=root.winfo_screenwidth()/5, y=0)
     MenuBar = Menu(root)
     FileMenu = Menu(MenuBar, tearoff=0)
     FileMenu.add_command(label="Search Wikipedia", command=wikisearch)
@@ -172,7 +171,7 @@ def sleep_check():
                     sleep+=1
         except:
             sleep=0
-        if sleep==35:
+        if sleep==10:
             sleep=0
             speak("dont sleep, wake up")
         if ended:
